@@ -31,7 +31,7 @@ _python_folder_name:
 
 _python_package_name:
   # Eg: aind-behavior-new-project
-  default: '{{ _python_package_name | replace("_", "-") }}'
+  default: '{{ _python_folder_name | replace("_", "-") }}'
   help: Internal Python package name (auto-generated)
 
 _python_class_prefix:
