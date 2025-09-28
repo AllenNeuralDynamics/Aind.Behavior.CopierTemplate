@@ -1,0 +1,40 @@
+project_name:
+  # Eg: new-project
+  type: str
+  help: What is your project name? (use kebab-case, e.g. "new-project")
+  default: new-project
+  validator: '^[a-z0-9]+(-[a-z0-9]+)*$'
+
+prefix:
+  # Eg: aind-behavior
+  type: str
+  help: What is your project prefix? (use kebab-case, e.g. "aind-behavior")
+  default: aind-behavior
+  validator: '^[a-z0-9]+(-[a-z0-9]+)*$'
+
+author_name:
+  # Eg: John Doe
+  type: str
+  help: Who is the author?
+  default: Anonymous
+
+_python_package_name:
+  # Eg: aind_behavior_new_project
+  default: '{{ prefix | replace("-", "_") }}_{{ project_name | replace("-", "_") }}'
+  help: Internal Python module name (auto-generated)
+
+_python_folder_name:
+  # Eg: aind-behavior-new-project
+  default: '{{ _python_package_name | replace("_", "-") }}'
+  help: Internal Python module folder name (auto-generated)
+
+_dotnet_name:
+  # Eg: NewProject
+  default: '{{ (project_name | replace("-", " ") | title | replace(" ", "")) }}'
+  help: Internal .NET project name (auto-generated)
+
+_dotnet_full_name:
+  # Eg: Aind.Behavior.NewProject
+  default: '{{ (prefix | replace("-", ".") | title) }}.{{ (_dotnet_name) }}'
+  help: Internal .NET module name (auto-generated)
+
