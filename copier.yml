@@ -18,15 +18,27 @@ author_name:
   help: Who is the author?
   default: Anonymous
 
-_python_package_name:
-  # Eg: aind_behavior_new_project
-  default: '{{ prefix | replace("-", "_") }}_{{ project_name | replace("-", "_") }}'
-  help: Internal Python module name (auto-generated)
+author_email:
+  # Eg: john.doe@example.com
+  type: str
+  help: What is the author's email?
+  default: john.doe@example.com
 
 _python_folder_name:
+  # Eg: aind_behavior_new_project
+  default: '{{ prefix | replace("-", "_") }}_{{ project_name | replace("-", "_") }}'
+  help: Internal Python module folder name (auto-generated)
+
+_python_package_name:
   # Eg: aind-behavior-new-project
   default: '{{ _python_package_name | replace("_", "-") }}'
-  help: Internal Python module folder name (auto-generated)
+  help: Internal Python package name (auto-generated)
+
+_python_class_prefix:
+  # Eg: AindBehaviorNewProject
+  default: '{{ _dotnet_full_name | replace(".", "") }}'
+  help: Internal Python class prefix (auto-generated)
+  type: str
 
 _dotnet_name:
   # Eg: NewProject
@@ -38,3 +50,6 @@ _dotnet_full_name:
   default: '{{ (prefix | replace("-", ".") | title) }}.{{ (_dotnet_name) }}'
   help: Internal .NET module name (auto-generated)
 
+_license_year:
+  default: "{% now 'utc', '%Y' %}"
+  when: true

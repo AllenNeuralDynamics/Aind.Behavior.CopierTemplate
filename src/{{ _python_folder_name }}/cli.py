@@ -1,0 +1,48 @@
+import typing as t
+
+from pydantic import Field, RootModel
+from pydantic_settings import BaseSettings, CliApp, CliSubCommand
+
+from {{ _python_package_name }} import __semver__, regenerate
+from {{ _python_package_name }}.data_mappers import DataMapperCli
+from {{ _python_package_name }}.data_qc import DataQcCli
+from {{ _python_package_name }}.launcher import ClabeCli
+
+
+class VersionCli(RootModel):
+    root: t.Any
+
+    def cli_cmd(self) -> None:
+        print(__semver__)
+
+
+class DslRegenerateCli(RootModel):
+    root: t.Any
+
+    def cli_cmd(self) -> None:
+        regenerate.main()
+
+
+class {{ _dotnet_name }}(BaseSettings, cli_prog_name="{{ project_name }}", cli_kebab_case=True):
+    data_mapper: CliSubCommand[DataMapperCli] = Field(description="Generate metadata for aind-data-schema.")
+    data_qc: CliSubCommand[DataQcCli] = Field(description="Run data quality checks.")
+    version: CliSubCommand[VersionCli] = Field(
+        description="Print the version of the {{ project_name }} package.",
+    )
+    regenerate: CliSubCommand[DslRegenerateCli] = Field(
+        description="Regenerate the {{ project_name }} dsl dependencies.",
+    )
+    clabe: CliSubCommand[ClabeCli] = Field(
+        description="Run the Clabe CLI.",
+    )
+
+    def cli_cmd(self):
+        return CliApp().run_subcommand(self)
+
+
+def main():
+    CliApp().run({{ _dotnet_name }})
+
+
+if __name__ == "__main__":
+    main()

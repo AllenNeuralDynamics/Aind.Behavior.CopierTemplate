@@ -86,7 +86,7 @@ def export_model_diagram(model: BaseModel, root: str = _static_path) -> None:
     diagram.draw(f"{root}/{model.__name__}.svg")
 
 
-export_model_diagram({{ _python_package_name }}.task_logic.{{ _pthon_class_prefix }}, _static_path)
+export_model_diagram({{ _python_package_name }}.task_logic.{{ _pthon_class_prefix }}TaskLogic, _static_path)
 
 # -- Dataset rendering
 

@@ -1,0 +1,36 @@
+from pathlib import Path
+from typing import Union
+
+import pydantic
+from aind_behavior_services.session import AindBehaviorSessionModel
+from aind_behavior_services.utils import BonsaiSgenSerializers, convert_pydantic_to_bonsai
+
+import {{ _python_package_name }}.rig
+import {{ _python_package_name }}.task_logic
+
+SCHEMA_ROOT = Path("./src/DataSchemas/")
+EXTENSIONS_ROOT = Path("./src/Extensions/")
+NAMESPACE_PREFIX = "{{ _python_class_prefix }}DataSchema"
+
+
+def main():
+    models = [
+        {{ _python_package_name }}.task_logic.{{ _pthon_class_prefix }}TaskLogic,
+        {{ _python_package_name }}.rig.{{ _pthon_class_prefix }}Rig,
+        AindBehaviorSessionModel,
+    ]
+    model = pydantic.RootModel[Union[tuple(models)]]
+
+    convert_pydantic_to_bonsai(
+        model,
+        model_name="{{ _python_package_name }}",
+        root_element="Root",
+        cs_namespace=NAMESPACE_PREFIX,
+        json_schema_output_dir=SCHEMA_ROOT,
+        cs_output_dir=EXTENSIONS_ROOT,
+        cs_serializer=[BonsaiSgenSerializers.JSON],
+    )
+
+
+if __name__ == "__main__":
+    main()
