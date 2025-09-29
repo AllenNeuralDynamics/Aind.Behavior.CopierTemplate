@@ -52,7 +52,7 @@ dotnet_name:
 
 dotnet_full_name:
   # Eg: Aind.Behavior.NewProject
-  default: '{{ (prefix | replace("-", ".") | title) }}.{{ (dotnet_name) }}'
+  default: '{{ (prefix | replace("-", " ") | title | replace(" ", ".")) }}.{{ (dotnet_name) }}'
   help: Internal .NET module name (auto-generated)
   when: false
 
