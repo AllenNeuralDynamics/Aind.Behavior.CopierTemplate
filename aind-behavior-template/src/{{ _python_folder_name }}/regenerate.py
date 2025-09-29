@@ -15,8 +15,8 @@ NAMESPACE_PREFIX = "{{ _python_class_prefix }}DataSchema"
 
 def main():
     models = [
-        {{ _python_package_name }}.task_logic.{{ _pthon_class_prefix }}TaskLogic,
-        {{ _python_package_name }}.rig.{{ _pthon_class_prefix }}Rig,
+        {{ _python_package_name }}.task_logic.{{ _python_class_prefix }}TaskLogic,
+        {{ _python_package_name }}.rig.{{ _python_class_prefix }}Rig,
         AindBehaviorSessionModel,
     ]
     model = pydantic.RootModel[Union[tuple(models)]]

@@ -13,8 +13,8 @@ from clabe.apps import CurriculumSuggestion
 from clabe.data_mapper import aind_data_schema as ads
 from clabe.launcher import Launcher, Promise
 
-from {{ _python_package_name }}.rig import {{ _pthon_class_prefix }}Rig
-from {{ _python_package_name }}.task_logic import {{ _pthon_class_prefix }}TaskLogic
+from {{ _python_package_name }}.rig import {{ _python_class_prefix }}Rig
+from {{ _python_package_name }}.task_logic import {{ _python_class_prefix }}TaskLogic
 
 
 logger = logging.getLogger(__name__)
@@ -24,8 +24,8 @@ class AindSessionDataMapper(ads.AindDataSchemaSessionDataMapper):
     def __init__(
         self,
         session_model: AindBehaviorSessionModel,
-        rig_model: {{ _pthon_class_prefix }}Rig,
-        task_logic_model: {{ _pthon_class_prefix }}TaskLogic,
+        rig_model: {{ _python_class_prefix }}Rig,
+        task_logic_model: {{ _python_class_prefix }}TaskLogic,
         repository: Union[os.PathLike, git.Repo] = Path("."),
         script_path: os.PathLike = Path("./src/main.bonsai"),
         session_end_time: Optional[datetime.datetime] = None,
@@ -58,10 +58,10 @@ class AindSessionDataMapper(ads.AindDataSchemaSessionDataMapper):
         cls,
         curriculum_suggestion: Optional[Promise[[Any], CurriculumSuggestion]] = None,
     ) -> Callable[
-        [Launcher[{{ _pthon_class_prefix }}Rig, AindBehaviorSessionModel, {{ _pthon_class_prefix }}TaskLogic]], "AindSessionDataMapper"
+        [Launcher[{{ _python_class_prefix }}Rig, AindBehaviorSessionModel, {{ _python_class_prefix }}TaskLogic]], "AindSessionDataMapper"
     ]:
         def _new(
-            launcher: Launcher[{{ _pthon_class_prefix }}Rig, AindBehaviorSessionModel, {{ _pthon_class_prefix }}TaskLogic],
+            launcher: Launcher[{{ _python_class_prefix }}Rig, AindBehaviorSessionModel, {{ _python_class_prefix }}TaskLogic],
         ) -> "AindSessionDataMapper":
             new = cls(
                 session_model=launcher.get_session(strict=True),

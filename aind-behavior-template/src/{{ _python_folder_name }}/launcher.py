@@ -24,8 +24,8 @@ from pydantic_settings import CliApp
 
 from .data_mappers import AindRigDataMapper, AindSessionDataMapper
 from .data_mappers._utils import write_ads_mappers
-from .rig import {{ _pthon_class_prefix }}Rig
-from .task_logic import {{ _pthon_class_prefix }}TaskLogic
+from .rig import {{ _python_class_prefix }}Rig
+from .task_logic import {{ _python_class_prefix }}TaskLogic
 
 
 def make_launcher(settings: LauncherCliArgs) -> Launcher:
@@ -37,13 +37,13 @@ def make_launcher(settings: LauncherCliArgs) -> Launcher:
     bonsai_app = AindBehaviorServicesBonsaiApp(BonsaiAppSettings(workflow=Path(r"./src/main.bonsai")))
     trainer = CurriculumApp(settings=CurriculumSettings())
     watchdog_settings = WatchdogSettings()  # type: ignore[call-arg]
-    picker = DefaultBehaviorPicker[{{ _pthon_class_prefix }}Rig, AindBehaviorSessionModel, {{ _pthon_class_prefix }}TaskLogic](
+    picker = DefaultBehaviorPicker[{{ _python_class_prefix }}Rig, AindBehaviorSessionModel, {{ _python_class_prefix }}TaskLogic](
         settings=DefaultBehaviorPickerSettings()  # type: ignore[call-arg]
     )
     launcher = Launcher(
-        rig={{ _pthon_class_prefix }}Rig,
+        rig={{ _python_class_prefix }}Rig,
         session=AindBehaviorSessionModel,
-        task_logic={{ _pthon_class_prefix }}TaskLogic,
+        task_logic={{ _python_class_prefix }}TaskLogic,
         settings=settings,
     )
 

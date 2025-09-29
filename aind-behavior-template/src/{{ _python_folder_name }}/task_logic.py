@@ -14,17 +14,17 @@ logger = logging.getLogger(__name__)
 # ==================== MAIN TASK LOGIC CLASSES ====================
 
 
-class {{ _pthon_class_prefix }}TaskParameters(TaskParameters):
+class {{ _python_class_prefix }}TaskParameters(TaskParameters):
     """
     Complete parameter specification for the {{ project_name }} task.
     """
     ...
 
-class {{ _pthon_class_prefix }}TaskLogic(AindBehaviorTaskLogicModel):
+class {{ _python_class_prefix }}TaskLogic(AindBehaviorTaskLogicModel):
     """
     Main task logic model for the {{ project_name }} task.
     """
 
     version: Literal[__semver__] = __semver__
     name: Literal["{{ _python_class_prefix }}"] = Field(default="{{ _python_class_prefix }}", description="Name of the task logic", frozen=True)
-    task_parameters: {{ _pthon_class_prefix }}TaskParameters = Field(description="Parameters of the task logic")
+    task_parameters: {{ _python_class_prefix }}TaskParameters = Field(description="Parameters of the task logic")

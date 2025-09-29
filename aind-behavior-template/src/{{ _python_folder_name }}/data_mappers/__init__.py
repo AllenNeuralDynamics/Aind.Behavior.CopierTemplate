@@ -8,8 +8,8 @@ from aind_behavior_services.session import AindBehaviorSessionModel
 from aind_behavior_services.utils import model_from_json_file
 from git import Repo
 
-from {{ _python_package_name }}.rig import {{ _pthon_class_prefix }}Rig
-from {{ _python_package_name }}.task_logic import {{ _pthon_class_prefix }}TaskLogic
+from {{ _python_package_name }}.rig import {{ _python_class_prefix }}Rig
+from {{ _python_package_name }}.task_logic import {{ _python_class_prefix }}TaskLogic
 
 from ._rig import AindRigDataMapper
 from ._session import AindSessionDataMapper
@@ -32,7 +32,7 @@ class DataMapperCli(pydantic_settings.BaseSettings, cli_kebab_case=True):
         abs_schemas_path = Path(self.data_path) / "Behavior" / "Logs"
         session = model_from_json_file(abs_schemas_path / "session_input.json", AindBehaviorSessionModel)
         rig = model_from_json_file(abs_schemas_path / "rig_input.json", {{ _python_class_prefix }}Rig)
-        task_logic = model_from_json_file(abs_schemas_path / "tasklogic_input.json", {{ _pthon_class_prefix }}TaskLogic)
+        task_logic = model_from_json_file(abs_schemas_path / "tasklogic_input.json", {{ _python_class_prefix }}TaskLogic)
         repo = Repo(self.repo_path)
         session_mapped = AindSessionDataMapper(
             session_model=session,

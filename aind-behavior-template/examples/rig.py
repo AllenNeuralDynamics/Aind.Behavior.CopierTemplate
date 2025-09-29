@@ -39,7 +39,7 @@ from aind_behavior_services.rig.harp import (
 
 from {{ _python_package_name }}.rig import (
     AindManipulatorDevice,
-    {{ _pthon_class_prefix }}Rig,
+    {{ _python_class_prefix }}Rig,
     RigCalibration,
 )
 
@@ -108,7 +108,7 @@ water_valve_calibration = WaterValveCalibration(
 
 video_writer = rig.cameras.VideoWriterFfmpeg(frame_rate=120, container_extension="mp4")
 
-rig = {{ _pthon_class_prefix }}Rig(
+rig = {{ _python_class_prefix }}Rig(
     rig_name="test_rig",
     triggered_camera_controller=rig.cameras.CameraController[rig.cameras.SpinnakerCamera](
         frame_rate=120,

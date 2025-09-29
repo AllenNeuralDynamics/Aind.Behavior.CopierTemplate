@@ -5,7 +5,7 @@ from aind_behavior_services.session import AindBehaviorSessionModel
 
 session = AindBehaviorSessionModel(
     date=datetime.datetime.now(tz=datetime.timezone.utc),
-    experiment="{{ _pthon_class_prefix }}",
+    experiment="{{ _python_class_prefix }}",
     root_path="c://",
     subject="test",
     notes="test session",

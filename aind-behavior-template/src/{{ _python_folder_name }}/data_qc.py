@@ -12,7 +12,7 @@ from matplotlib import pyplot as plt
 
 from {{ _python_package_name }} import __semver__
 from {{ _python_package_name }}.data_contract import dataset
-from {{ _python_package_name }}.rig import {{ _pthon_class_prefix }}Rig
+from {{ _python_package_name }}.rig import {{ _python_class_prefix }}Rig
 
 def make_qc_runner(dataset: contract.Dataset) -> qc.Runner:
     _runner = qc.Runner()

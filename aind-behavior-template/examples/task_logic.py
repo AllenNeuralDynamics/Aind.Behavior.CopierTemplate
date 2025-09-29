@@ -4,13 +4,13 @@ import aind_behavior_services.task_logic.distributions as distributions
 from aind_behavior_curriculum import Stage, TrainerState
 
 from {{ _python_package_name }}.task_logic import (
-    {{ _pthon_class_prefix }}TaskLogic,
-    {{ _pthon_class_prefix }}TaskParameters,
+    {{ _python_class_prefix }}TaskLogic,
+    {{ _python_class_prefix }}TaskParameters,
 )
 
 
-task_logic = {{ _pthon_class_prefix }}TaskLogic(
-    task_parameters={{ _pthon_class_prefix }}TaskParameters(),
+task_logic = {{ _python_class_prefix }}TaskLogic(
+    task_parameters={{ _python_class_prefix }}TaskParameters(),
 )
 
 
