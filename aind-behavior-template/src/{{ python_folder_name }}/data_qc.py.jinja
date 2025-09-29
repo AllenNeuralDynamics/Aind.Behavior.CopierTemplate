@@ -10,9 +10,9 @@ from contraqctor import contract, qc
 from contraqctor.contract.harp import HarpDevice
 from matplotlib import pyplot as plt
 
-from {{ python_package_name }} import __semver__
-from {{ python_package_name }}.data_contract import dataset
-from {{ python_package_name }}.rig import {{ python_class_prefix }}Rig
+from {{ python_folder_name }} import __semver__
+from {{ python_folder_name }}.data_contract import dataset
+from {{ python_folder_name }}.rig import {{ python_class_prefix }}Rig
 
 def make_qc_runner(dataset: contract.Dataset) -> qc.Runner:
     _runner = qc.Runner()

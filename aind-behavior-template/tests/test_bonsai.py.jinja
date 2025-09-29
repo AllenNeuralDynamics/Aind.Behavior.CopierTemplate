@@ -9,8 +9,8 @@ from aind_behavior_services.session import AindBehaviorSessionModel
 from aind_behavior_services.utils import run_bonsai_process
 from pydantic import ValidationError
 
-from {{ python_package_name }}.rig import {{ python_class_prefix }}Rig
-from {{ python_package_name }}.task_logic import {{ python_class_prefix }}TaskLogic
+from {{ python_folder_name }}.rig import {{ python_class_prefix }}Rig
+from {{ python_folder_name }}.task_logic import {{ python_class_prefix }}TaskLogic
 
 sys.path.append(".")
 from examples import rig, session, task_logic  # isort:skip # pylint: disable=wrong-import-position

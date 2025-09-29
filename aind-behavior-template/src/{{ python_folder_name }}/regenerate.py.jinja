@@ -5,8 +5,8 @@ import pydantic
 from aind_behavior_services.session import AindBehaviorSessionModel
 from aind_behavior_services.utils import BonsaiSgenSerializers, convert_pydantic_to_bonsai
 
-import {{ python_package_name }}.rig
-import {{ python_package_name }}.task_logic
+import {{ python_folder_name }}.rig
+import {{ python_folder_name }}.task_logic
 
 SCHEMA_ROOT = Path("./src/DataSchemas/")
 EXTENSIONS_ROOT = Path("./src/Extensions/")
@@ -15,15 +15,15 @@ NAMESPACE_PREFIX = "{{ python_class_prefix }}DataSchema"
 
 def main():
     models = [
-        {{ python_package_name }}.task_logic.{{ python_class_prefix }}TaskLogic,
-        {{ python_package_name }}.rig.{{ python_class_prefix }}Rig,
+        {{ python_folder_name }}.task_logic.{{ python_class_prefix }}TaskLogic,
+        {{ python_folder_name }}.rig.{{ python_class_prefix }}Rig,
         AindBehaviorSessionModel,
     ]
     model = pydantic.RootModel[Union[tuple(models)]]
 
     convert_pydantic_to_bonsai(
         model,
-        model_name="{{ python_package_name }}",
+        model_name="{{ python_folder_name }}",
         root_element="Root",
         cs_namespace=NAMESPACE_PREFIX,
         json_schema_output_dir=SCHEMA_ROOT,

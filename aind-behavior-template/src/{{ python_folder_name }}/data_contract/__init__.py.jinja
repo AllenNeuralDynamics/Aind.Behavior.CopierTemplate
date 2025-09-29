@@ -5,7 +5,7 @@ from pathlib import Path
 import contraqctor
 import semver
 
-from {{ python_package_name }} import __semver__
+from {{ python_folder_name }} import __semver__
 
 
 def dataset(path: os.PathLike, version: str = __semver__) -> contraqctor.contract.Dataset:

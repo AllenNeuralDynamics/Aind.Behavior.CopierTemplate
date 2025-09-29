@@ -3,10 +3,10 @@ import typing as t
 from pydantic import Field, RootModel
 from pydantic_settings import BaseSettings, CliApp, CliSubCommand
 
-from {{ python_package_name }} import __semver__, regenerate
-from {{ python_package_name }}.data_mappers import DataMapperCli
-from {{ python_package_name }}.data_qc import DataQcCli
-from {{ python_package_name }}.launcher import ClabeCli
+from {{ python_folder_name }} import __semver__, regenerate
+from {{ python_folder_name }}.data_mappers import DataMapperCli
+from {{ python_folder_name }}.data_qc import DataQcCli
+from {{ python_folder_name }}.launcher import ClabeCli
 
 
 class VersionCli(RootModel):
