@@ -64,7 +64,5 @@ python_class_prefix:
   when: false
 
 license_year:
-  default: "{% now 'utc', '%Y' %}"
+  default: "{{ '%Y' | strftime }}"
   when: false
-
-answers_file: .copier-answers.yml
