@@ -2,13 +2,13 @@ import os
 
 import aind_behavior_services.rig as rig
 
-from {{ _python_package_name }}.rig import (
+from {{ python_package_name }}.rig import (
     AindManipulatorDevice,
-    {{ _python_class_prefix }}Rig,
+    {{ python_class_prefix }}Rig,
     RigCalibration,
 )
 
-rig = {{ _python_class_prefix }}Rig(rig_name="test_rig")
+rig = {{ python_class_prefix }}Rig(rig_name="test_rig")
 
 def main(path_seed: str = "./local/{schema}.json"):
     os.makedirs(os.path.dirname(path_seed), exist_ok=True)

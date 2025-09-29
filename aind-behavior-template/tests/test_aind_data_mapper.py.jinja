@@ -8,7 +8,7 @@ from aind_data_schema.core import acquisition, instrument
 from aind_data_schema.utils import compatibility_check
 from git import Repo
 
-from {{ _python_package_name }}.data_mappers import AindRigDataMapper, AindSessionDataMapper
+from {{ python_package_name }}.data_mappers import AindRigDataMapper, AindSessionDataMapper
 
 sys.path.append(".")
 from examples.rig import rig
@@ -35,7 +35,7 @@ class TestAindSessionDataMapper(unittest.TestCase):
             session_end_time=self.session_end_time,
         )
 
-    @patch("{{ _python_package_name }}.data_mappers.AindSessionDataMapper._map")
+    @patch("{{ python_package_name }}.data_mappers.AindSessionDataMapper._map")
     def test_mock_map(self, mock_map):
         mock_map.return_value = MagicMock()
         result = self.mapper.map()
@@ -59,7 +59,7 @@ class TestAindRigDataMapper(unittest.TestCase):
             rig_model=self.rig_model,
         )
 
-    @patch("{{ _python_package_name }}.data_mappers.AindRigDataMapper._map")
+    @patch("{{ python_package_name }}.data_mappers.AindRigDataMapper._map")
     def test_mock_map(self, mock_map):
         mock_map.return_value = MagicMock()
         result = self.mapper.map()

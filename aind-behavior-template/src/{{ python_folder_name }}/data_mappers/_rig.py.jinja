@@ -7,14 +7,14 @@ from aind_data_schema.core import instrument
 from clabe.data_mapper import aind_data_schema as ads
 from clabe.launcher import Launcher
 
-from {{ _python_package_name }}.rig import {{ _python_class_prefix }}Rig
+from {{ python_package_name }}.rig import {{ python_class_prefix }}Rig
 
 logger = logging.getLogger(__name__)
 
 class AindRigDataMapper(ads.AindDataSchemaRigDataMapper):
     def __init__(
         self,
-        rig_model: {{ _python_class_prefix }}Rig,
+        rig_model: {{ python_class_prefix }}Rig,
     ):
         super().__init__()
         self.rig_model = rig_model
@@ -45,9 +45,9 @@ class AindRigDataMapper(ads.AindDataSchemaRigDataMapper):
         return self.mapped is not None
 
     @classmethod
-    def build_runner(cls) -> Callable[[Launcher[{{ _python_class_prefix }}Rig, Any, Any]], "AindRigDataMapper"]:
+    def build_runner(cls) -> Callable[[Launcher[{{ python_class_prefix }}Rig, Any, Any]], "AindRigDataMapper"]:
         def _new(
-            launcher: Launcher[{{ _python_class_prefix }}Rig, Any, Any],
+            launcher: Launcher[{{ python_class_prefix }}Rig, Any, Any],
         ) -> "AindRigDataMapper":
             new = cls(rig_model=launcher.get_rig(strict=True))
             new.map()
@@ -56,5 +56,5 @@ class AindRigDataMapper(ads.AindDataSchemaRigDataMapper):
         return _new
 
     @classmethod
-    def _map(cls, rig: {{ _python_class_prefix }}Rig) -> instrument.Instrument:
+    def _map(cls, rig: {{ python_class_prefix }}Rig) -> instrument.Instrument:
         raise NotImplementedError("Rig mapping not implemented yet.")

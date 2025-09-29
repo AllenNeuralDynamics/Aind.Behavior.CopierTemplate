@@ -12,8 +12,8 @@ watchdog:
   s3_bucket: "default"
 
 default_behavior_picker:
-  config_library_dir: '\\allen\aind\scratch\AindBehavior.db\{{ _python_class_prefix }}'
+  config_library_dir: '\\allen\aind\scratch\AindBehavior.db\{{ python_class_prefix }}'
 
 curriculum:
   script: "curriculum run"
-  project_directory: "./src/{{ _python_package_name }}/curricula/{{ _dotnet_full_name }}.Curricula"
+  project_directory: "./src/{{ python_package_name }}/curricula/{{ dotnet_full_name }}.Curricula"

@@ -9,14 +9,14 @@ from aind_behavior_services.session import AindBehaviorSessionModel
 from aind_behavior_services.utils import run_bonsai_process
 from pydantic import ValidationError
 
-from {{ _python_package_name }}.rig import {{ _python_class_prefix }}Rig
-from {{ _python_package_name }}.task_logic import {{ _python_class_prefix }}TaskLogic
+from {{ python_package_name }}.rig import {{ python_class_prefix }}Rig
+from {{ python_package_name }}.task_logic import {{ python_class_prefix }}TaskLogic
 
 sys.path.append(".")
 from examples import rig, session, task_logic  # isort:skip # pylint: disable=wrong-import-position
 from tests import JSON_ROOT  # isort:skip # pylint: disable=wrong-import-position
 
-TModel = TypeVar("TModel", bound=Union[{{ _python_class_prefix }}Rig, {{ _python_class_prefix }}TaskLogic, AindBehaviorSessionModel])
+TModel = TypeVar("TModel", bound=Union[{{ python_class_prefix }}Rig, {{ python_class_prefix }}TaskLogic, AindBehaviorSessionModel])
 
 
 class BonsaiTests(unittest.TestCase):
@@ -27,8 +27,8 @@ class BonsaiTests(unittest.TestCase):
 
         models_to_test = [
             TestModel(bonsai_property="SessionPath", json_root=JSON_ROOT, model=AindBehaviorSessionModel),
-            TestModel(bonsai_property="RigPath", json_root=JSON_ROOT, model={{ _python_class_prefix }}Rig),
-            TestModel(bonsai_property="TaskLogicPath", json_root=JSON_ROOT, model={{ _python_class_prefix }}TaskLogic),
+            TestModel(bonsai_property="RigPath", json_root=JSON_ROOT, model={{ python_class_prefix }}Rig),
+            TestModel(bonsai_property="TaskLogicPath", json_root=JSON_ROOT, model={{ python_class_prefix }}TaskLogic),
         ]
 
         workflow_props = {

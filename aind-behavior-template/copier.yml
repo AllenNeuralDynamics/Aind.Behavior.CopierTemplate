@@ -32,34 +32,39 @@ author_email:
   help: What is the author's email?
   default: john.doe@example.com
 
-_python_folder_name:
+python_folder_name:
   # Eg: aind_behavior_new_project
   default: '{{ prefix | replace("-", "_") }}_{{ project_name | replace("-", "_") }}'
   help: Internal Python module folder name (auto-generated)
+  when: false
 
-_python_package_name:
+python_package_name:
   # Eg: aind-behavior-new-project
-  default: '{{ _python_folder_name | replace("_", "-") }}'
+  default: '{{ python_folder_name | replace("_", "-") }}'
   help: Internal Python package name (auto-generated)
+  when: false
 
-_dotnet_name:
+dotnet_name:
   # Eg: NewProject
   default: '{{ (project_name | replace("-", " ") | title | replace(" ", "")) }}'
   help: Internal .NET project name (auto-generated)
+  when: false
 
-_dotnet_full_name:
+dotnet_full_name:
   # Eg: Aind.Behavior.NewProject
-  default: '{{ (prefix | replace("-", ".") | title) }}.{{ (_dotnet_name) }}'
+  default: '{{ (prefix | replace("-", ".") | title) }}.{{ (dotnet_name) }}'
   help: Internal .NET module name (auto-generated)
+  when: false
 
-_python_class_prefix:
+python_class_prefix:
   # Eg: AindBehaviorNewProject
-  default: '{{ _dotnet_full_name | replace(".", "") }}'
+  default: '{{ dotnet_full_name | replace(".", "") }}'
   help: Internal Python class prefix (auto-generated)
   type: str
+  when: false
 
-_license_year:
+license_year:
   default: "{% now 'utc', '%Y' %}"
-  when: true
+  when: false
 
 answers_file: .copier-answers.yml

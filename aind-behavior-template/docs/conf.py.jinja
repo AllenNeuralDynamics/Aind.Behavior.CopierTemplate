@@ -6,12 +6,12 @@
 import erdantic as erd
 from pydantic import BaseModel
 
-import {{ _python_package_name }}
-import {{ _python_package_name }}.data_contract as contract
-import {{ _python_package_name }}.rig
-import {{ _python_package_name }}.task_logic
+import {{ python_package_name }}
+import {{ python_package_name }}.data_contract as contract
+import {{ python_package_name }}.rig
+import {{ python_package_name }}.task_logic
 
-SOURCE_ROOT = "https://github.com/AllenNeuralDynamics/{{ _dotnet_full_name }}/tree/main/src/"
+SOURCE_ROOT = "https://github.com/AllenNeuralDynamics/{{ dotnet_full_name }}/tree/main/src/"
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -19,7 +19,7 @@ SOURCE_ROOT = "https://github.com/AllenNeuralDynamics/{{ _dotnet_full_name }}/tr
 project = " {{ project_name }} "
 copyright = "2025, Allen Institute for Neural Dynamics"
 author = " {{ author_name }} "
-release = {{ _python_package_name }}.__semver__
+release = {{ python_package_name }}.__semver__
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -86,7 +86,7 @@ def export_model_diagram(model: BaseModel, root: str = _static_path) -> None:
     diagram.draw(f"{root}/{model.__name__}.svg")
 
 
-export_model_diagram({{ _python_package_name }}.task_logic.{{ _python_class_prefix }}TaskLogic, _static_path)
+export_model_diagram({{ python_package_name }}.task_logic.{{ python_class_prefix }}TaskLogic, _static_path)
 
 # -- Dataset rendering
 
