@@ -1,5 +1,4 @@
 _templates_suffix: .jinja
-_subdirectory: template
 
 project_name:
   # Eg: new-project

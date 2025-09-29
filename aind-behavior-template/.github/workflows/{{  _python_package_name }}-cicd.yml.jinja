@@ -109,19 +109,19 @@ jobs:
         id: get_version
         run: |
           version=$(uv version --output-format json | jq -r '.version')
-          echo "version=$version" >> $GITHUB_OUTPUT
+          echo "version=$version" >> {% raw %}$GITHUB_OUTPUT{% endraw %}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
         with:
-          tag_name: v${{ steps.get_version.outputs.version }}
-          name: v${{ steps.get_version.outputs.version }}
+          tag_name: {% raw %}v${{ steps.get_version.outputs.version }}{% endraw %}
+          name: {% raw %}v${{ steps.get_version.outputs.version }}{% endraw %}
           generate_release_notes: true
           prerelease: true
           body: |
-            Automated pre-release v${{ steps.get_version.outputs.version }}
+            Automated pre-release {% raw %}v${{ steps.get_version.outputs.version }}{% endraw %}
 
   # ╔─────────────────────────────────────────────────────────────────╗
   # │   ____        _     _ _        ____      _                      │
@@ -151,13 +151,13 @@ jobs:
 
       - name: Get release version from tag
         id: get_version
-        run: echo "version=${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
+        run: echo "version={% raw %}${{ github.event.release.tag_name }}{% endraw %}" >> {% raw %}$GITHUB_OUTPUT{% endraw %}
 
       - name: Validate version tag format
-        run: uv version ${{ steps.get_version.outputs.version }} --dry-run
+        run: uv version {% raw %}${{ steps.get_version.outputs.version }}{% endraw %} --dry-run
 
       - name: Update package version
-        run: uv version ${{ steps.get_version.outputs.version }}
+        run: uv version {% raw %}${{ steps.get_version.outputs.version }}{% endraw %}
 
       - name: Regenerate schemas
         run: uv run {{ project_name }} regenerate
@@ -202,6 +202,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+            github_token: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
           publish_dir: _build/html
           force_orphan: true
