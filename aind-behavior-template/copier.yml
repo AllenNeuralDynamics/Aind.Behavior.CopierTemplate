@@ -42,12 +42,6 @@ _python_package_name:
   default: '{{ _python_folder_name | replace("_", "-") }}'
   help: Internal Python package name (auto-generated)
 
-_python_class_prefix:
-  # Eg: AindBehaviorNewProject
-  default: '{{ _dotnet_full_name | replace(".", "") }}'
-  help: Internal Python class prefix (auto-generated)
-  type: str
-
 _dotnet_name:
   # Eg: NewProject
   default: '{{ (project_name | replace("-", " ") | title | replace(" ", "")) }}'
@@ -57,6 +51,12 @@ _dotnet_full_name:
   # Eg: Aind.Behavior.NewProject
   default: '{{ (prefix | replace("-", ".") | title) }}.{{ (_dotnet_name) }}'
   help: Internal .NET module name (auto-generated)
+
+_python_class_prefix:
+  # Eg: AindBehaviorNewProject
+  default: '{{ _dotnet_full_name | replace(".", "") }}'
+  help: Internal Python class prefix (auto-generated)
+  type: str
 
 _license_year:
   default: "{% now 'utc', '%Y' %}"
