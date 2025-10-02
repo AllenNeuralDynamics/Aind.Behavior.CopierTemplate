@@ -3,9 +3,7 @@ import os
 import aind_behavior_services.rig as rig
 
 from {{ python_folder_name }}.rig import (
-    AindManipulatorDevice,
     {{ python_class_prefix }}Rig,
-    RigCalibration,
 )
 
 rig = {{ python_class_prefix }}Rig(rig_name="test_rig")
