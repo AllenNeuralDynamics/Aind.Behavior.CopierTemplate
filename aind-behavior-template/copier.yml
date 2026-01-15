@@ -1,9 +1,13 @@
 _templates_suffix: .jinja
 
+# =============================================================================
+# User-facing configuration options
+# =============================================================================
+
 project_name:
-  # Eg: new-project
+  # Eg: vr-foraging
   type: str
-  help: What is your project name? (use kebab-case, e.g. "new-project")
+  help: What is your project name? (use kebab-case, e.g. "vr-foraging")
   default: new-project
   validator: >-
     {% if not (project_name | regex_search('^[a-z][a-z0-9\\-]*$')) %}
@@ -20,6 +24,12 @@ prefix:
     Prefix must start with a lowercase letter and contain only lowercase letters, digits, or hyphens.
     {% endif %}
 
+project_description:
+  # Eg: A VR foraging task for mice
+  type: str
+  help: A short description of the project
+  default: "A library that defines AIND data schema for a behavior experiment."
+
 author_name:
   # Eg: John Doe
   type: str
@@ -32,32 +42,36 @@ author_email:
   help: What is the author's email?
   default: john.doe@example.com
 
+# =============================================================================
+# Auto-generated variables (not shown to users)
+# =============================================================================
+
 python_folder_name:
-  # Eg: aind_behavior_new_project
+  # Eg: aind_behavior_vr_foraging
   default: '{{ prefix | replace("-", "_") }}_{{ project_name | replace("-", "_") }}'
   help: Internal Python module folder name (auto-generated)
   when: false
 
 python_package_name:
-  # Eg: aind-behavior-new-project
+  # Eg: aind-behavior-vr-foraging
   default: '{{ python_folder_name | replace("_", "-") }}'
   help: Internal Python package name (auto-generated)
   when: false
 
 dotnet_name:
-  # Eg: NewProject
+  # Eg: VrForaging
   default: '{{ (project_name | replace("-", " ") | title | replace(" ", "")) }}'
   help: Internal .NET project name (auto-generated)
   when: false
 
 dotnet_full_name:
-  # Eg: Aind.Behavior.NewProject
+  # Eg: Aind.Behavior.VrForaging
   default: '{{ (prefix | replace("-", " ") | title | replace(" ", ".")) }}.{{ (dotnet_name) }}'
   help: Internal .NET module name (auto-generated)
   when: false
 
 python_class_prefix:
-  # Eg: AindBehaviorNewProject
+  # Eg: AindBehaviorVrForaging
   default: '{{ dotnet_full_name | replace(".", "") }}'
   help: Internal Python class prefix (auto-generated)
   type: str

@@ -1,7 +1,7 @@
 import logging
 import os
 from pathlib import Path
-from typing import Callable, Optional
+from typing import Any, Callable, Optional
 
 from aind_data_schema.core import instrument
 from clabe.data_mapper import aind_data_schema as ads
@@ -11,7 +11,10 @@ from {{ python_folder_name }}.rig import {{ python_class_prefix }}Rig
 
 logger = logging.getLogger(__name__)
 
+
 class AindRigDataMapper(ads.AindDataSchemaRigDataMapper):
+    """Maps the task-specific rig model to the aind-data-schema Instrument model."""
+
     def __init__(
         self,
         rig_model: {{ python_class_prefix }}Rig,
@@ -42,7 +45,7 @@ class AindRigDataMapper(ads.AindDataSchemaRigDataMapper):
         return self._mapped
 
     def is_mapped(self) -> bool:
-        return self.mapped is not None
+        return self._mapped is not None
 
     @classmethod
     def build_runner(cls) -> Callable[[Launcher[{{ python_class_prefix }}Rig, Any, Any]], "AindRigDataMapper"]:
@@ -57,4 +60,7 @@ class AindRigDataMapper(ads.AindDataSchemaRigDataMapper):
 
     @classmethod
     def _map(cls, rig: {{ python_class_prefix }}Rig) -> instrument.Instrument:
+        # TODO: Implement rig mapping to aind-data-schema Instrument
+        # See VrForaging implementation for reference:
+        # https://github.com/AllenNeuralDynamics/Aind.Behavior.VrForaging/blob/main/src/aind_behavior_vr_foraging/data_mappers/_rig.py
         raise NotImplementedError("Rig mapping not implemented yet.")
